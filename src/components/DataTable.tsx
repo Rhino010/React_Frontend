@@ -6,17 +6,18 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 90, hide: true },
+    { field: 'id', headerName: 'ID', width: 90, hide: true},
     { field: 'name', headerName: 'Contact Name', flex: 1 },
     { field: 'email', headerName: 'Email', flex: 1 },
     { field: 'phone_number', headerName: 'Phone Number', flex: 1 },
-    { field: 'address', headerName: 'Address', flex: 2 }
-]
+    { field: 'address', headerName: 'Address', flex: 2 },
+];
+
 function DataTable() {
 
     const [open, setOpen] = useState(false);
     const { contactData, getData } = useGetData();
-    const [selectionModel, setSelectionModel] = useState<any>([])
+    const [selectionModel, setSelectionModel] = useState<string[]>([])
 
     const handleOpen = () => {
         setOpen(true)
@@ -27,7 +28,7 @@ function DataTable() {
     }
 
     const deleteData = () => {
-        server_calls.delete(selectionModel);
+        server_calls.delete(selectionModel[0]);
         getData();
         console.log(`Selection model: ${selectionModel}`)
         setTimeout(() => { window.location.reload() }, 500)
