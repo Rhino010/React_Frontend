@@ -5,7 +5,8 @@ type Props = {
     id?: string;
     open: boolean;
     onClose?: () => void;
-}
+    children: React.ReactNode;
+  };
 const Modal = (props: Props) => {
     if (!props.open) return null;
     return (

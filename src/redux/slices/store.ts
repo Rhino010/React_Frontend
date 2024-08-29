@@ -1,11 +1,12 @@
-// Store is a small temporary database in between the servers and the apps
-
 import { configureStore } from "@reduxjs/toolkit";
-import { reducer } from '../slices/RootSlice';
+import {reducer} from '../slices/RootSlice';
 
 export const store = configureStore({
-    reducer,
+    reducer: reducer,
     devTools: true,
-    });
+});
 
-    export default store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;
